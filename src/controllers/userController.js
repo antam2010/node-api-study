@@ -21,6 +21,8 @@ const resUser = (user) => {
  * /api/users/{id}:
  *   get:
  *     summary: 내정보 가져옴.
+ *     tags:
+ *        - Users
  *     parameters:
  *       - in: path
  *         name: id
@@ -57,6 +59,8 @@ exports.getUser = async (req, res) => {
  * /api/users:
  *   post:
  *     summary: 유저 생성 (새 사용자 등록)
+ *     tags:
+ *        - Users
  *     requestBody:
  *       required: true
  *       content:
@@ -96,6 +100,8 @@ exports.createUser = async (req, res) => {
  * /api/users/{id}:
  *   put:
  *     summary: 내 정보 수정 (사용자 정보 업데이트)
+ *     tags:
+ *        - Users
  *     parameters:
  *       - in: path
  *         name: id
@@ -155,6 +161,8 @@ exports.updateUser = async (req, res) => {
  * /api/users/{id}:
  *   delete:
  *     summary: 회원 탈퇴 (소프트 삭제)
+ *     tags:
+ *        - Users
  *     parameters:
  *       - in: path
  *         name: id
@@ -204,6 +212,8 @@ exports.deleteUser = async (req, res) => {
  * /api/users/{id}/restore:
  *   patch:
  *     summary: 회원 복구 (소프트 삭제된 사용자 복원)
+ *     tags:
+ *        - Users
  *     parameters:
  *       - in: path
  *         name: id
