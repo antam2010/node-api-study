@@ -1,6 +1,6 @@
 // src/routes/userRoutes.js
 const express = require('express');
-const { getUser, createUser, updateUser, deleteUser } = require('../controllers/userController');
+const { getUser, createUser, updateUser, deleteUser, restoreUser } = require('../controllers/userController');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 const router = express.Router();
@@ -21,17 +21,24 @@ router.post('/', createUser);
 
 /**
  * @route PUT /api/users
- * @desc Create a new user
+ * @desc UPDATE a user
  * @access protected
  */
 router.put("/:id", authMiddleware, updateUser);
+
+/**
+ * @route DELETE /api/users
+ * @desc DELETE UPDATE a user
+ * @access protected
+ */
+router.delete("/:id", authMiddleware, deleteUser);
+
 
 /**
  * @route PUT /api/users
  * @desc Create a new user
  * @access protected
  */
-router.delete("/:id", authMiddleware, deleteUser);
-
+router.patch("/:id/restore", authMiddleware, restoreUser);
 
 module.exports = router;
