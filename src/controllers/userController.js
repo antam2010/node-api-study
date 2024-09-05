@@ -1,13 +1,15 @@
-// src/controllers/userController.js
 const User = require("../models/userModel");
-
+const { hashPassword } = require("../utils/helpers");
 /**
  * 사용자 정보를 가져오는 컨트롤러
  */
 exports.getUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await User.findByPk(id); // findById 대신 findByPk를 사용합니다.
+    
+    console.log(req.token.email);
+    
+    const user = await User.findByPk(id); 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -23,11 +25,17 @@ exports.getUser = async (req, res) => {
  */
 exports.createUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    let { name, email, password } = req.body;
+    password = await hashPassword(password);
     const newUser = await User.create({ name, email, password });
-    res.status(201).json(newUser);
+    res.status(201).json({
+      id: newUser.id,
+      name: newUser.name,
+      email: newUser.email,
+      createdAt: newUser.createdAt
+    });
   } catch (error) {
     console.error("Error creating user:", error);
-    res.status(400).json({ message: "Error creating user" });
+    res.status(400).json({ message: error.message });
   }
 };

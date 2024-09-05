@@ -7,7 +7,7 @@ dotenv.config();
 // PostgreSQL 데이터베이스와 연결합니다.
 connectDB();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
