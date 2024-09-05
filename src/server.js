@@ -8,7 +8,9 @@ dotenv.config();
 connectDB();
 
 const port = process.env.PORT;
+const hostname = process.env.HOSTNAME;
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Swagger docs available at http://${hostname}:${port}/api-docs`);
 });

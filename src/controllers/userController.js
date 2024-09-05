@@ -17,12 +17,26 @@ const resUser = (user) => {
 };
 
 /**
- * 내 정보 출력 (사용자 정보 가져오기)
- * @route GET /api/users/:id
- * @param {object} req - 요청 객체
- * @param {object} res - 응답 객체
- * @returns {object} - 사용자 정보
+ * @swagger
+ * /api/users/{id}:
+ *   get:
+ *     summary: 내정보 가져옴.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: 유저 ID
+ *     security:
+ *       - bearerAuth: []  # JWT 인증 필요
+ *     responses:
+ *       200:
+ *         description: 성공적으로 유저 정보를 반환합니다.
+ *       404:
+ *         description: 유저를 찾을 수 없습니다.
  */
+
 exports.getUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -39,12 +53,32 @@ exports.getUser = async (req, res) => {
 };
 
 /**
- * 유저 생성 (새 사용자 등록)
- * @route POST /api/users
- * @param {object} req - 요청 객체
- * @param {object} res - 응답 객체
- * @returns {object} - 생성된 사용자 정보
+ * @swagger
+ * /api/users:
+ *   post:
+ *     summary: 유저 생성 (새 사용자 등록)
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               grade:
+ *                 type: integer
+ *     responses:
+ *       201:
+ *         description: 성공적으로 사용자 생성
+ *       400:
+ *         description: 잘못된 요청
  */
+
 exports.createUser = async (req, res) => {
   try {
     let { name, email, password, grade } = req.body;
@@ -58,12 +92,43 @@ exports.createUser = async (req, res) => {
 };
 
 /**
- * 내 정보 수정 (사용자 정보 업데이트)
- * @route PUT /api/users/:id
- * @param {object} req - 요청 객체
- * @param {object} res - 응답 객체
- * @returns {object} - 업데이트된 사용자 정보
+ * @swagger
+ * /api/users/{id}:
+ *   put:
+ *     summary: 내 정보 수정 (사용자 정보 업데이트)
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: 유저 ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               grade:
+ *                 type: integer
+ *     security:
+ *       - bearerAuth: []  # JWT 인증 필요
+ *     responses:
+ *       201:
+ *         description: 성공적으로 사용자 정보 수정됨
+ *       400:
+ *         description: 잘못된 요청
+ *       404:
+ *         description: 유저를 찾을 수 없음
  */
+
 exports.updateUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -86,12 +151,28 @@ exports.updateUser = async (req, res) => {
 };
 
 /**
- * 회원 탈퇴 (소프트 삭제)
- * @route DELETE /api/users/:id
- * @param {object} req - 요청 객체
- * @param {object} res - 응답 객체
- * @returns {object} - 삭제 성공 메시지
+ * @swagger
+ * /api/users/{id}:
+ *   delete:
+ *     summary: 회원 탈퇴 (소프트 삭제)
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: 유저 ID
+ *     security:
+ *       - bearerAuth: []  # JWT 인증 필요
+ *     responses:
+ *       200:
+ *         description: 성공적으로 사용자 삭제됨
+ *       403:
+ *         description: 권한 없음
+ *       404:
+ *         description: 유저를 찾을 수 없음
  */
+
 exports.deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -119,12 +200,28 @@ exports.deleteUser = async (req, res) => {
 };
 
 /**
- * 회원 복구 (소프트 삭제된 사용자 복원)
- * @route PUT /api/users/:id/restore
- * @param {object} req - 요청 객체
- * @param {object} res - 응답 객체
- * @returns {object} - 복구 성공 메시지
+ * @swagger
+ * /api/users/{id}/restore:
+ *   patch:
+ *     summary: 회원 복구 (소프트 삭제된 사용자 복원)
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: 유저 ID
+ *     security:
+ *       - bearerAuth: []  # JWT 인증 필요
+ *     responses:
+ *       200:
+ *         description: 성공적으로 사용자 복원됨
+ *       403:
+ *         description: 권한 없음
+ *       404:
+ *         description: 유저를 찾을 수 없음
  */
+
 exports.restoreUser = async (req, res) => {
   try {
     const { id } = req.params;
