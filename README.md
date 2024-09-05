@@ -35,7 +35,12 @@ nodemon ./src/server.js
 
 ## .evn 예제
 PORT=3000
-PG_URI=postgresql://postgres:mypassword@localhost:5432/postgres
 JWT_SECRET=secret
-EMAIL_USER=email@gmail.com
-EMAIL_PASS=password
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-email-password
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=postgres
+DB_USERNAME=your-username
+DB_PASSWORD=your-passowrd
+NODE_ENV=production
