@@ -6,14 +6,14 @@
 
 프로젝트는 각각의 기능에 따라 디렉토리로 나누어져 있으며, 이를 통해 코드의 유지보수성과 확장성을 높였습니다.
 
-src/ # 소스 코드 
-config/ # 데이터베이스 및 환경 변수 설정 파일
-controllers/ # API 엔드포인트에 대한 비즈니스 로직 
-middlewares/ # 미들웨어 (예: 인증) │
-models/ # 데이터베이스 모델 (PostgreSQL과 Sequelize 사용) 
-routes/ # API 라우트 설정 
-services/ # 외부 API 호출 등 서비스 로직
-utils/ # 유틸리티 함수 모음 
+- **src/** # 소스 코드 
+- **config/** # 데이터베이스 및 환경 변수 설정 파일
+- **controllers/** # API 엔드포인트에 대한 비즈니스 로직 
+- **middlewares/** # 미들웨어 (예: 인증) │
+- **models/** # 데이터베이스 모델 (PostgreSQL과 Sequelize 사용) 
+- **routes/** # API 라우트 설정 
+- **services/** # 외부 API 호출 등 서비스 로직
+- **utils/** # 유틸리티 함수 모음 
 
 
 ## 설치된 NPM 패키지 목록
@@ -33,7 +33,7 @@ utils/ # 유틸리티 함수 모음
 npm ./src/server.js OR
 nodemon ./src/server.js
 
-## .evn 예제
+## .env 예제
 PORT=3000
 JWT_SECRET=secret
 EMAIL_USER=your-email@gmail.com
@@ -43,4 +43,7 @@ DB_PORT=5432
 DB_NAME=postgres
 DB_USERNAME=your-username
 DB_PASSWORD=your-passowrd
-NODE_ENV=production
+
+## 실행
+npm run start
+npm run dev (.env.develop 필요 )

@@ -1,9 +1,5 @@
 // src/config/db.js
 const { Sequelize } = require("sequelize");
-const dotenv = require("dotenv");
-
-// .env 파일에서 환경 변수를 로드합니다.
-dotenv.config();
 
 // PostgreSQL 데이터베이스와의 연결을 설정합니다.
 const sequelize = new Sequelize(

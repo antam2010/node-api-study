@@ -1,7 +1,5 @@
-const dotenv = require("dotenv");
 const swaggerJsDoc = require("swagger-jsdoc");
 
-dotenv.config();
 
 const port = process.env.PORT;
 const hostname = process.env.HOSTNAME;
