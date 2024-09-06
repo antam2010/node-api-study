@@ -6,6 +6,12 @@ const userRoutes = require("./routes/userRoutes"); // 사용자 관련 라우트
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocs = require("./config/swaggerOptions"); //  Swagger 설정 파일
+const swaggerUiOptions = {
+  swaggerOptions: {
+    schemes: ["http"], // HTTP만 사용하도록 강제
+  },
+};
+
 
 
 
@@ -18,7 +24,11 @@ app.use(express.json()); // 요청 바디를 JSON 형식으로 파싱하는 미�
 app.use("/api/users", userRoutes); 
 
 // Swagger UI 라우트 추가
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocs, swaggerUiOptions)
+);
 
 
 module.exports = app; // 애플리케이션 객체를 모듈로 내보냅니다. 서버가 이 객체를 사용하여 애플리케이션을 실행할 수 있습니다.
