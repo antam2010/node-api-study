@@ -12,6 +12,7 @@ const swaggerOptions = {
       version: "1.0.0",
       description: "node api 공부중",
     },
+    schemes: ["http"], // HTTP만 사용하도록 설정
     servers: [
       {
         url: `http://${hostname}:${port}`,
